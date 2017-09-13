@@ -14,10 +14,10 @@ I do not own the dal online system, nor do I want this to be thought of as offic
 This tool is just to help visualise classes in a better way.
 
 ## TODO
-[ ] Make it more visualy, perhapse replace terminal graphics with html and js
-[ ] Add a script to download all pages of a section
-[ ] Make it work for sections that are not CSCI
-[ ] Consider how to improve visuals...
-[ ] More colors, more options with that...
-[ ] Help menu.
-[ ] Wraper script do preform downloads, processing, and display all in one.
+  * [ ] Make it more visualy, perhapse replace terminal graphics with html and js
+  * [ ] Add a script to download all pages of a section
+  * [ ] Make it work for sections that are not CSCI
+  * [ ] Consider how to improve visuals...
+  * [ ] More colors, more options with that...
+  * [ ] Help menu.
+  * [ ] Wraper script do preform downloads, processing, and display all in one.
