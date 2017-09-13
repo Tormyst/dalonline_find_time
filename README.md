@@ -21,3 +21,5 @@ This tool is just to help visualise classes in a better way.
   * [ ] More colors, more options with that...
   * [ ] Help menu.
   * [ ] Wraper script do preform downloads, processing, and display all in one.
+  * [ ] Consider what widths actualy mean, could we use them to mean something like level?
+  * [ ] In legend put widths.
