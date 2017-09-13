@@ -18,9 +18,11 @@ if argc <= 1:
 elif argc == 2:
     title_print = True
     timetable = False
+    legend = False
 else:
     title_print = False
     timetable = True
+    legend = True
 
 class_info = True
 
@@ -45,8 +47,14 @@ with open(argv[1], 'r') as in_file:
             if title_print:
                 print('{} {}'.format(curr_num, curr_title))
 
+
             if curr_num in classes:
                 selected = classes.index(curr_num)
+                if legend:
+                    print('{}: {} {}'.format(colored('    ',
+                                                     COLOR_LIST[selected],
+                                                     HIGHLIGHT_LIST[selected]),
+                                             curr_num, curr_title))
             else:
                 selected = -1
         elif selected >= 0:
@@ -61,12 +69,13 @@ with open(argv[1], 'r') as in_file:
 
 
 if timetable:
-    print('      Mon    Tue    Wed    Thu    Fri ')
+    print('        Mon    Tue    Wed    Thu    Fri ')
     for time in range(TIME_START, TIME_END):
         for minutes in [0, 30]:
             t = (time*100) + minutes
             to_print = '{:2}:{:02}:'.format(time,minutes)
             for weekday in range(5):
+                last_print = ' '
                 for class_int in range(len(classes)):
                     """
                     list(map(lambda x: print('{} {} {}, t={}, weekday={}'.format(
@@ -80,9 +89,10 @@ if timetable:
                                    and (x['time'][0] - 5) <= t
                                    and (x['time'][1] + 5) >= t,
                                times[class_int])):
-                        to_print += colored(' ', COLOR_LIST[class_int],
+                        last_print = colored(' ', COLOR_LIST[class_int],
                                         HIGHLIGHT_LIST[class_int])
-                    else:
-                        to_print += ' '
-                to_print += (' '*(7 - len(classes)))
+                    to_print += last_print
+                to_print += (last_print*(6 - len(classes)))
+                to_print += ' '
             print(to_print)
+
