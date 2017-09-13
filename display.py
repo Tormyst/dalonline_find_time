@@ -1,5 +1,5 @@
 # coding: utf-8
-from termcolor import colored, COLORS, HIGHLIGHTS
+from termcolor import colored, COLORS, HIGHLIGHTS, ATTRIBUTES
 from sys import argv
 from re import compile as re
 
@@ -75,7 +75,7 @@ if timetable:
             t = (time*100) + minutes
             to_print = '{:2}:{:02}:'.format(time,minutes)
             for weekday in range(5):
-                last_print = ' '
+                last_print = colored(' ', attrs=['underline'])
                 for class_int in range(len(classes)):
                     """
                     list(map(lambda x: print('{} {} {}, t={}, weekday={}'.format(
@@ -90,9 +90,9 @@ if timetable:
                                    and (x['time'][1] + 5) >= t,
                                times[class_int])):
                         last_print = colored(' ', COLOR_LIST[class_int],
-                                        HIGHLIGHT_LIST[class_int])
+                                        HIGHLIGHT_LIST[class_int], attrs=['underline'])
                     to_print += last_print
                 to_print += (last_print*(6 - len(classes)))
-                to_print += ' '
+                to_print += colored(' ', attrs=['underline'])
             print(to_print)
 
