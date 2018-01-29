@@ -26,8 +26,15 @@ else:
 
 class_info = True
 
-title = re('^CSCI (\d*) (.*)$')
-classes = argv[2:]
+title = re('^[A-Z]{4} (\d*) (.*)$')
+if len(argv) > 2 and argv[2][0] == '-':
+    selected_type = argv[2][1:]
+    class_start = 3
+else:
+    class_start = 2
+    selected_type = None
+
+classes = argv[class_start:]
 if len(classes) > 5:
     print('TOO many classes right now fix me')
     exit(-1)
@@ -59,12 +66,11 @@ with open(argv[1], 'r') as in_file:
                 selected = -1
         elif selected >= 0:
             data = line.split(',')
-            if len(data) == 8:
+            if len(data) == 7:
                 times[selected].append({
                     'type': data[0],
                     'days': [d != ' ' for d in data[1:6]],
                     'time': [int(i) for i in data[6].split('-')],
-                    'location': data[7]
                 })
 
 
@@ -87,7 +93,8 @@ if timetable:
 
                     if any(map(lambda x: x['days'][weekday]
                                    and (x['time'][0] - 5) <= t
-                                   and (x['time'][1] + 5) >= t,
+                                   and (x['time'][1] + 5) >= t
+                                   and (selected_type == None or x['type'] == selected_type),
                                times[class_int])):
                         last_print = colored(' ', COLOR_LIST[class_int],
                                         HIGHLIGHT_LIST[class_int], attrs=['underline'])
