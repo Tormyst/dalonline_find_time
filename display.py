@@ -93,7 +93,7 @@ if timetable:
 
                     if any(map(lambda x: x['days'][weekday]
                                    and (x['time'][0] - 5) <= t
-                                   and (x['time'][1] + 5) >= t
+                                   and (x['time'][1] + 5) > t
                                    and (selected_type == None or x['type'] == selected_type),
                                times[class_int])):
                         last_print = colored(' ', COLOR_LIST[class_int],
